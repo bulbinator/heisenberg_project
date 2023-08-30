@@ -1,5 +1,5 @@
 * {
-    margin:20;
+    margin:10;
     padding:0;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -16,9 +16,9 @@
   }
   
   .letter {
-    font-size:37px;
+    font-size:27px;
     display: block;
-    font-family: sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #fff;
     margin:0;
     text-align: center;
@@ -26,7 +26,7 @@
   }
   
   .number {
-    font-size:14px;
+    font-size:13px;
     color: #fff;
     display:inline-block;
     float: right;
@@ -35,7 +35,7 @@
   }
 
   .name {
-    font-size:15px;
+    font-size:10px;
     color: #fff;
     display:inline-block;
 
@@ -45,13 +45,13 @@
   table {
 
     table-layout: fixed;
-    width: 95%;
+    width: 75%;
     height: 100%;
   }
   
 
   .element {
-    font-family: sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #fff;
     margin:0;
     background:green;
