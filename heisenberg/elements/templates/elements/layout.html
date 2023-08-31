@@ -7,6 +7,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Periodic Table</title>
+    <script>
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get all elements with the "more" class
+        const moreButtons = document.querySelectorAll(".more");
+    
+        // Add a click event listener to each "more" button
+        moreButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                // Find the closest table to the clicked button
+                const table = button.closest("table");
+    
+                // Get all rows with data-hidden="true" within the same table
+                const hiddenRows = table.querySelectorAll("tr[data-hidden='true']");
+    
+                // Toggle the display property for each hidden row
+                hiddenRows.forEach(function (row) {
+                    if (row.style.display === "none" || row.style.display === "") {
+                        row.style.display = "table-row";
+                    } else {
+                        row.style.display = "none";
+                    }
+                });
+            });
+        });
+    });
+    
+    </script>
     <link rel="stylesheet" href="{% static 'elements/styles.css' %}">
 </head>
 
@@ -308,7 +336,7 @@
                     <span class="letter">Ba</span><br/>
                     <span class="name">Barium</span>
                 </td>
-                <td class="element">
+                <td class="more">
                     <span class="number">57-71</span><br/>
                     <span class="letter">&nbsp;</span><br/>
                     <span class="name">&nbsp;</span>
@@ -400,7 +428,7 @@
                     <span class="letter">Ra</span><br/>
                     <span class="name">Radium</span>
                 </td>
-                <td class="element">
+                <td class="more">
                     <span class="number">89-103</span><br/>
                     <span class="letter">&nbsp;</span><br/>
                     <span class="name">&nbsp;</span>
@@ -509,7 +537,7 @@
                 <td class="noBorder"></td>
             </tr>
             
-            <tr>
+            <tr data-hidden="true">
                 <td class="noBorder" colspan="2" rowspan="2"></td>
                 <td class="element">
                     <span class="number">57</span><br/>
@@ -588,7 +616,7 @@
                 </td>
                 <td class="noBorder" colspan="1" rowspan="1"></td>     
             </tr>
-            <tr>
+            <tr data-hidden="true">
 
                 <td class="element">
                     <span class="number">89</span><br/>

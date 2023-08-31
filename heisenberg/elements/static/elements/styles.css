@@ -50,7 +50,8 @@
   }
   
 
-  .element {
+  .element, .more {
+    transition: all 0.2s;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #fff;
     margin:0;
@@ -64,3 +65,22 @@
      box-shadow:inset 0px 2px 2px rgba(50,50,50,.6);  
      padding:1px 2px;
   }
+
+
+  .element:hover {
+
+    transform: scale(1.5);
+
+  }
+
+  
+  .more:hover {
+
+    transform: scale(1.5);
+
+  }
+
+
+  tr[data-hidden="true"] {
+    display: none;
+}
