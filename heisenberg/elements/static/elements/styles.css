@@ -10,10 +10,6 @@
     font-weight: normal;
   }
   
-  div {
-    width:500px;
-    margin:40px auto;
-  }
   
   .letter {
     font-size:27px;
@@ -42,6 +38,7 @@
     float: center;
   }
 
+  
   table {
 
     table-layout: fixed;
@@ -83,4 +80,33 @@
 
   tr[data-hidden="true"] {
     display: none;
+}
+
+
+
+@media only screen and (max-width: 1024px) {
+
+  .element {
+
+    height: 25%;
+
+  }
+
+  table, .table-container{
+
+    overflow-x: auto;
+    width: 185%;
+  }
+  
+  .letter {
+    font-size: 25px;
+  }
+
+  .name {
+    font-size: 8px;
+  }
+
+  .number {
+    font-size: 10px;
+  }
 }

@@ -16,11 +16,10 @@
         // Add a click event listener to each "more" button
         moreButtons.forEach(function (button) {
             button.addEventListener("click", function () {
-                // Find the closest table to the clicked button
-                const table = button.closest("table");
+
     
                 // Get all rows with data-hidden="true" within the same table
-                const hiddenRows = table.querySelectorAll("tr[data-hidden='true']");
+                const hiddenRows = document.querySelectorAll("tr[data-hidden='true']");
     
                 // Toggle the display property for each hidden row
                 hiddenRows.forEach(function (row) {
@@ -40,7 +39,8 @@
 
 <body>
     <center>
-        <h1 class="headingOne">The Periodic Table</h1>
+    <h1 class="headingOne">The Periodic Table</h1>
+    <div class="table-container">
         <table>
             <tr>
                 <td class="element">
@@ -696,5 +696,6 @@
             </tr>
 
         </table>
+    </div>
     </center>
 </body>
