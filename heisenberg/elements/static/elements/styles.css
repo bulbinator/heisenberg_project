@@ -70,6 +70,12 @@
 
   }
 
+  .element.active {
+
+    transform: scale(1.5);
+
+  }
+
   
   .more:hover {
 

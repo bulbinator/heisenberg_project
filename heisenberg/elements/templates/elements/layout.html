@@ -7,33 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Periodic Table</title>
-    <script>
-    
-    document.addEventListener("DOMContentLoaded", function () {
-        // Get all elements with the "more" class
-        const moreButtons = document.querySelectorAll(".more");
-    
-        // Add a click event listener to each "more" button
-        moreButtons.forEach(function (button) {
-            button.addEventListener("click", function () {
-
-    
-                // Get all rows with data-hidden="true" within the same table
-                const hiddenRows = document.querySelectorAll("tr[data-hidden='true']");
-    
-                // Toggle the display property for each hidden row
-                hiddenRows.forEach(function (row) {
-                    if (row.style.display === "none" || row.style.display === "") {
-                        row.style.display = "table-row";
-                    } else {
-                        row.style.display = "none";
-                    }
-                });
-            });
-        });
-    });
-    
-    </script>
+    <script src="{% static 'elements/elements.js' %}"></script>
     <link rel="stylesheet" href="{% static 'elements/styles.css' %}">
 </head>
 
@@ -697,5 +671,12 @@
 
         </table>
     </div>
+
+
+    <div id="element-info"></div>
+
+    {% block body %}
+    {% endblock %}
+    
     </center>
 </body>

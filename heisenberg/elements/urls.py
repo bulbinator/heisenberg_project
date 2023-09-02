@@ -4,7 +4,6 @@ from . import views
 
 urlpatterns = [
 
-    path("", views.index, name="index.html")
-
-
+    path("", views.index, name="index"),
+    #path("<str:element>", views.element, name="element")
 ]
