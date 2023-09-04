@@ -35,6 +35,24 @@ document.addEventListener("DOMContentLoaded", function () {
             <strong>${data.name}</strong><br>
             Atomic Number: ${data.number}<br>
             Atomic Mass: ${data.atomic_mass}
+
+
+            <model-viewer src="${data.bohr_model_3d}" shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+
+            <h1>Appearance</h1><br>
+            ${data.appearance}
+
+            <h1>Uses</h1><br>
+            ${data.uses}
+
+            <h1>Biological Role</h1><br>
+            ${data.role}
+            
+            <h1>Natural Abundance</h1><br>
+            ${data.abundance}
+
+            <h1>History</h1><br>
+            ${data.history}
         `;
     }
 
@@ -55,22 +73,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            // Fetch data from the JSON file
-            fetch("../static/elements/elements.json")
-                .then((response) => response.json())
-                .then((data) => {
-                    // Find the element in the "elements" array by symbol
-                    const elementData = data.elements.find((el) => el.symbol === symbol);
+            if (clickedSymbol === null) {
+                // Fetch data from the JSON file
+                fetch("../static/elements/elements.json")
+                    .then((response) => response.json())
+                    .then((data) => {
+                        // Find the element in the "elements" array by symbol
+                        const elementData = data.elements.find((el) => el.symbol === symbol);
 
-                    if (elementData) {
-                        // Update the element info and store the clicked symbol
-                        updateElementInfo(symbol, elementData);
-                        clickedSymbol = symbol;
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error fetching element data:", error);
-                });
+                        if (elementData) {
+                            // Update the element info and store the clicked symbol
+                            updateElementInfo(symbol, elementData);
+                            clickedSymbol = symbol;
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching element data:", error);
+                    });
+                }
         });
     });
 

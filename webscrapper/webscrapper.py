@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import json
+import re
 
 # Reading data from JSON to get Element:Number dict
 json_file_path = "PeriodicTable.json"
@@ -27,6 +28,12 @@ for element in element_dict:
     content = soup.find("div", class_="acc_blk")
     try:
         content = content.get_text().strip()
+
+        appearance = re.search(r'Appearance((.|\n)+?)Uses', content).group(1)
+        uses = re.search(r'Uses((.|\n)+?)Biological role', content).group(1)
+        role = re.search(r'Biological role((.|\n)+?)Natural abundance', content).group(1)
+        abundance = re.search(r'Natural abundance((.|\n)+$)', content).group(1)
+
         history = soup.find("div", class_="clear accordian_details") 
         history = history.get_text().strip()
     except:
@@ -40,7 +47,10 @@ for element in element_dict:
             break
     
     
-    element_to_modify["content"] = content
+    element_to_modify["appearance"] = appearance
+    element_to_modify["uses"] = uses
+    element_to_modify["role"] = role
+    element_to_modify["abundance"] = abundance
     element_to_modify["history"] = history
     element_to_modify["url"] = url
 
