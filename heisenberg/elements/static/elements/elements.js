@@ -25,34 +25,53 @@ document.addEventListener("DOMContentLoaded", function () {
 
     
 
-    const elements = document.querySelectorAll(".element");
-    let clickedSymbol = null; // To keep track of the clicked symbol
+
 
     // Function to update element info
     function updateElementInfo(symbol, data) {
         const elementInfo = document.getElementById("element-info");
         elementInfo.innerHTML = `
-            <strong>${data.name}</strong><br>
-            Atomic Number: ${data.number}<br>
-            Atomic Mass: ${data.atomic_mass}
+            <div class="stats">
+                <strong>${data.name}</strong><br>
+                Atomic Number: ${data.number}<br>
+                Atomic Mass: ${data.atomic_mass}
+            <div>
 
+            <div class="container">
+                <div class="selected-element">
+                    <span class="selected-number">${data.number}</span><br/>
+                    <br>
+                    <span class="selected-letter">${data.symbol}</span><br/>
+                    <br>
+                    <br>
+                    <span class="selected-name" style="text-align: left;">${data.name}</span>
+                </div>
+                <div class="model">
+                    <model-viewer src="${data.bohr_model_3d}" shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+                </div>
+            </div>
 
-            <model-viewer src="${data.bohr_model_3d}" shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
-
-            <h1>Appearance</h1><br>
-            ${data.appearance}
-
-            <h1>Uses</h1><br>
-            ${data.uses}
-
-            <h1>Biological Role</h1><br>
-            ${data.role}
+            <div class="content">
             
-            <h1>Natural Abundance</h1><br>
-            ${data.abundance}
+                <h1>Appearance</h1>
+                ${data.appearance}
 
-            <h1>History</h1><br>
-            ${data.history}
+                <h1>Uses</h1>
+                ${data.uses}
+
+                <h1>Biological Role</h1>
+                ${data.role}
+                
+                <h1>Natural Abundance</h1>
+                ${data.abundance}
+
+                <h1>History</h1>
+                ${data.history}
+                
+            </div>
+            <br>
+            <br>
+            <p> Data provided by <a href="${data.url}" target="_blank" rel="noopener noreferrer">The Royal Society of Chemistry</a></p>
         `;
     }
 
@@ -60,6 +79,10 @@ document.addEventListener("DOMContentLoaded", function () {
     function enableHover() {
         clickedSymbol = null;
     }
+
+
+    const elements = document.querySelectorAll(".element");
+    let clickedSymbol = null; // To keep track of the clicked symbol
 
     // Add a click event listener to each element
     elements.forEach(function (element) {
@@ -90,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     .catch((error) => {
                         console.error("Error fetching element data:", error);
                     });
-                }
+            }
         });
     });
 
