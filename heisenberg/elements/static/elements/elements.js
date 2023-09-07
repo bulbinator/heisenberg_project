@@ -1,8 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
-    
-
     const buttons = document.querySelectorAll('.element');
     let activeButton = null;
+    let elementData = null;
+
+    // Fetch the JSON data when the page loads
+    fetch("../static/elements/elements.json")
+        .then((response) => response.json())
+        .then((data) => {
+            elementData = data.elements;
+        })
+        .catch((error) => {
+            console.error("Error fetching element data:", error);
+        });
 
     buttons.forEach(button => {
         button.addEventListener('click', function () {
@@ -18,68 +27,62 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-
-
-
-
-
-    
-
-
-
     // Function to update element info
-    function updateElementInfo(symbol, data) {
+    function updateElementInfo(symbol) {
         const elementInfo = document.getElementById("element-info");
-        elementInfo.innerHTML = `
-            <div class="stats">
-                <strong>${data.name}</strong><br>
-                Atomic Number: ${data.number}<br>
-                Atomic Mass: ${data.atomic_mass}
-            <div>
+        const data = elementData.find(el => el.symbol === symbol);
 
-            <div class="container">
-                <div class="selected-element">
-                    <span class="selected-number">${data.number}</span><br/>
-                    <br>
-                    <span class="selected-letter">${data.symbol}</span><br/>
-                    <br>
-                    <br>
-                    <span class="selected-name" style="text-align: left;">${data.name}</span>
+        if (data) {
+            elementInfo.innerHTML = `
+                <div class="stats">
+                    <strong>${data.name}</strong><br>
+                    Atomic Number: ${data.number}<br>
+                    Atomic Mass: ${data.atomic_mass}
+                <div>
+    
+                <div class="container">
+                    <div class="selected-element">
+                        <span class="selected-number">${data.number}</span><br/>
+                        <br>
+                        <span class="selected-letter">${data.symbol}</span><br/>
+                        <br>
+                        <br>
+                        <span class="selected-name" style="text-align: left;">${data.name}</span>
+                    </div>
+                    <div class="model">
+                        <model-viewer src="${data.bohr_model_3d}" shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+                    </div>
                 </div>
-                <div class="model">
-                    <model-viewer src="${data.bohr_model_3d}" shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+    
+                <div class="content">
+                
+                    <h1>Appearance</h1>
+                    ${data.appearance}
+    
+                    <h1>Uses</h1>
+                    ${data.uses}
+    
+                    <h1>Biological Role</h1>
+                    ${data.role}
+                    
+                    <h1>Natural Abundance</h1>
+                    ${data.abundance}
+    
+                    <h1>History</h1>
+                    ${data.history}
+                    
                 </div>
-            </div>
-
-            <div class="content">
-            
-                <h1>Appearance</h1>
-                ${data.appearance}
-
-                <h1>Uses</h1>
-                ${data.uses}
-
-                <h1>Biological Role</h1>
-                ${data.role}
-                
-                <h1>Natural Abundance</h1>
-                ${data.abundance}
-
-                <h1>History</h1>
-                ${data.history}
-                
-            </div>
-            <br>
-            <br>
-            <p> Data provided by <a href="${data.url}" target="_blank" rel="noopener noreferrer">The Royal Society of Chemistry</a></p>
-        `;
+                <br>
+                <br>
+                <p> Data provided by <a href="${data.url}" target="_blank" rel="noopener noreferrer">The Royal Society of Chemistry</a></p>
+            `;
+        }
     }
 
     // Function to enable hover feature
     function enableHover() {
         clickedSymbol = null;
     }
-
 
     const elements = document.querySelectorAll(".element");
     let clickedSymbol = null; // To keep track of the clicked symbol
@@ -97,22 +100,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             if (clickedSymbol === null) {
-                // Fetch data from the JSON file
-                fetch("../static/elements/elements.json")
-                    .then((response) => response.json())
-                    .then((data) => {
-                        // Find the element in the "elements" array by symbol
-                        const elementData = data.elements.find((el) => el.symbol === symbol);
-
-                        if (elementData) {
-                            // Update the element info and store the clicked symbol
-                            updateElementInfo(symbol, elementData);
-                            clickedSymbol = symbol;
-                        }
-                    })
-                    .catch((error) => {
-                        console.error("Error fetching element data:", error);
-                    });
+                // Update the element info and store the clicked symbol
+                updateElementInfo(symbol);
+                clickedSymbol = symbol;
             }
         });
     });
@@ -128,33 +118,10 @@ document.addEventListener("DOMContentLoaded", function () {
             // Get the element's symbol (e.g., "H", "He")
             const symbol = element.querySelector(".letter").textContent;
 
-            // Fetch data from the JSON file
-            fetch("../static/elements/elements.json")
-                .then((response) => response.json())
-                .then((data) => {
-                    // Find the element in the "elements" array by symbol
-                    const elementData = data.elements.find((el) => el.symbol === symbol);
-
-                    if (elementData) {
-                        // Display the element's data in the #element-info div
-                        updateElementInfo(symbol, elementData);
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error fetching element data:", error);
-                });
+            // Display the element's data in the #element-info div
+            updateElementInfo(symbol);
         });
     });
-
-
-
-
-
-
-
-
-
-
 
     // Get all elements with the "more" class
     const moreButtons = document.querySelectorAll(".more");
@@ -162,8 +129,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add a click event listener to each "more" button
     moreButtons.forEach(function (button) {
         button.addEventListener("click", function () {
-
-
             // Get all rows with data-hidden="true" within the same table
             const hiddenRows = document.querySelectorAll("tr[data-hidden='true']");
 
@@ -177,20 +142,4 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 });
