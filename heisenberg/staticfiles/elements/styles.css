@@ -173,6 +173,10 @@ tr[data-hidden="true"] {
 
 @media only screen and (max-width: 1024px) {
 
+body {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 .element {
 
   height: 25%;
