@@ -92,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
         element.addEventListener("click", function () {
             // Get the element's symbol (e.g., "H", "He")
             const symbol = element.querySelector(".letter").textContent;
+            const isMobile = window.matchMedia("(max-width: 1024px)").matches;
 
             // If the same element is clicked again, enable hover and return
             if (clickedSymbol === symbol) {
@@ -99,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            if (clickedSymbol === null) {
+            if (isMobile || clickedSymbol === null) {
                 // Update the element info and store the clicked symbol
                 updateElementInfo(symbol);
                 clickedSymbol = symbol;

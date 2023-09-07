@@ -190,7 +190,7 @@ table, .table-container{
 }
 
 .name {
-  font-size: 8px;
+  font-size: 12px;
 }
 
 .number {
@@ -199,24 +199,28 @@ table, .table-container{
 
 
 #element-info {
-  width: 100%;
+  width: 175%;
 }
 
 model-viewer{
-  width:250px;
-  height:225px;
+  width:275px;
+  height:250px;
 }
 
 .selected-element {
 
   height: 175px;
-  width: 65%;
+  width: 20%;
 }
 
 .links {
 
   display: none;
 }
+
+  .center {
+    padding-left: 45%;
+  }
 
 
 }
