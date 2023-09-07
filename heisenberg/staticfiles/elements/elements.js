@@ -46,7 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         <br>
                         <span class="selected-letter">${data.symbol}</span><br/>
                         <br>
-                        <br>
                         <span class="selected-name" style="text-align: left;">${data.name}</span>
                     </div>
                     <div class="model">
